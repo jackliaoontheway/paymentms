@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.noone.paymentms.biz.BizProductStockService;
 import com.noone.paymentms.common.basemodel.BizResponse;
 import com.noone.paymentms.common.basemodel.ServerResponse;
-import com.noone.paymentms.domain.ProductStock;
+import com.noone.paymentms.domain.OrderItem;
 
 @RestController
 @RequestMapping("/paymentms/productstock")
@@ -21,11 +21,11 @@ public class ProductController extends BaseController {
 	BizProductStockService bizProductStockService;
 
 	@GetMapping("/readrfid")
-	public @ResponseBody ServerResponse<List<ProductStock>> readRFID() {
+	public @ResponseBody ServerResponse<List<OrderItem>> readRFID() {
 
-		ServerResponse<List<ProductStock>> serverResponse = new ServerResponse<List<ProductStock>>();
+		ServerResponse<List<OrderItem>> serverResponse = new ServerResponse<List<OrderItem>>();
 
-		BizResponse<List<ProductStock>> bizResp = bizProductStockService.retriveProductStockByReadRfid();
+		BizResponse<List<OrderItem>> bizResp = bizProductStockService.retriveProductStockByReadRfid();
 		serverResponse.setData(bizResp.getData());
 
 		return serverResponse;

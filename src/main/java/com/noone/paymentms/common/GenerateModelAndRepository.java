@@ -7,12 +7,12 @@ import java.util.Date;
 
 public class GenerateModelAndRepository {
 
-	private String tagertDir = "com.sail.domain";
+	private String tagertDir = "com.noone.paymentms.domain";
 	private String baseDir = System.getProperty("user.dir");
 
 	public static void main(String[] args) throws Exception {
 
-		new GenerateModelAndRepository().generate("Account", true);
+		new GenerateModelAndRepository().generate("NooneOrder", true);
 
 	}
 
@@ -36,7 +36,7 @@ public class GenerateModelAndRepository {
 
 		String packagePath = tagertDir.replaceAll("\\.", "/");
 
-		File directory = new File(baseDir + File.separator + "src" + File.separator + packagePath);
+		File directory = new File(baseDir + File.separator + "src/main/java" + File.separator + packagePath);
 		if (!directory.exists()) {
 			directory.mkdir();
 		}
@@ -63,7 +63,7 @@ public class GenerateModelAndRepository {
 		String packagePath = tagertDir.replaceAll("\\.", "/");
 
 		File file = new File(
-				baseDir + File.separator + "src" + File.separator + packagePath + File.separator + className + ".java");
+				baseDir + File.separator + "src/main/java" + File.separator + packagePath + File.separator + className + ".java");
 
 		PrintStream ps = new PrintStream(new FileOutputStream(file));
 
@@ -159,7 +159,7 @@ public class GenerateModelAndRepository {
 
 		String repositoryName = modelName + "Repository";
 
-		File file = new File(baseDir + File.separator + "src" + File.separator + packagePath + File.separator
+		File file = new File(baseDir + File.separator + "src/main/java" + File.separator + packagePath + File.separator
 				+ repositoryName + ".java");
 
 		PrintStream ps = new PrintStream(new FileOutputStream(file));
