@@ -3,6 +3,7 @@ com\noone\paymentms\domain\NooneOrder.class
 com\noone\paymentms\domain\ProductStock.class
 com\noone\paymentms\common\basemodel\CorsConfig.class
 com\noone\paymentms\domain\Account.class
+com\noone\paymentms\biz\BizNooneOrderServiceImpl.class
 com\noone\paymentms\common\basemodel\BizResponse.class
 com\noone\paymentms\domain\AccountRepository.class
 com\noone\paymentms\common\GenerateModelAndRepository.class
@@ -19,7 +20,9 @@ com\noone\paymentms\controller\HomeController.class
 com\noone\paymentms\common\basemodel\ErrorInfo.class
 com\noone\paymentms\domain\QNooneOrder.class
 com\noone\paymentms\domain\OrderItemRepository.class
+com\noone\paymentms\controller\model\ViewNooneOrder.class
 com\noone\paymentms\PaymentmsApplication.class
+com\noone\paymentms\biz\BizNooneOrderService.class
 com\noone\paymentms\domain\NooneOrderRepository.class
 com\noone\paymentms\common\basemodel\BaseResponse.class
 com\noone\paymentms\biz\BizProductStockServiceImpl.class

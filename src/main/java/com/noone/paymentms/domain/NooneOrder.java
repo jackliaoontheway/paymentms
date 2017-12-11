@@ -12,6 +12,7 @@ import java.util.Date;
 public class NooneOrder {
 
 	private String orderNum;
+	private String status;
 	private String payCode;
 	private Double totalFee;
 

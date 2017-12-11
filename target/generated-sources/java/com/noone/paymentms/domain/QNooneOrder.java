@@ -33,6 +33,8 @@ public class QNooneOrder extends EntityPathBase<NooneOrder> {
 
     public final StringPath payCode = createString("payCode");
 
+    public final StringPath status = createString("status");
+
     public final NumberPath<Double> totalFee = createNumber("totalFee", Double.class);
 
     public QNooneOrder(String variable) {

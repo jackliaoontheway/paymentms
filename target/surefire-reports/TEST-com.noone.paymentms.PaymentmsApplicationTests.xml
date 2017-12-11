@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.noone.paymentms.PaymentmsApplicationTests" time="0.032" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="com.noone.paymentms.PaymentmsApplicationTests" time="0.031" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Tools\Java\jdk1.8.0_152\jre\bin"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\sts-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8624429373602924823.tmp"/>
+    <property name="classworlds.conf" value="C:\sts-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3789365112013690420.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
     <property name="java.library.path" value="C:\Tools\Java\jdk1.8.0_152\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Tools/Java/jre1.8.0_152/bin/server;C:/Tools/Java/jre1.8.0_152/bin;C:/Tools/Java/jre1.8.0_152/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Tools\Git\cmd;C:\Tools\nodejs\;C:\Users\ldhOn\AppData\Local\Microsoft\WindowsApps;C:\Users\ldhOn\AppData\Roaming\npm;C:\Tools\Microsoft VS Code\bin;C:\Users\ldhOn\Downloads\sts-bundle\sts-3.9.1.RELEASE;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -60,5 +60,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="contextLoads" classname="com.noone.paymentms.PaymentmsApplicationTests" time="0.032"/>
+  <testcase name="contextLoads" classname="com.noone.paymentms.PaymentmsApplicationTests" time="0.031"/>
 </testsuite>
