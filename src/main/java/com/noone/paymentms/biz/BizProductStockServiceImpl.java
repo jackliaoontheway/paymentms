@@ -31,13 +31,13 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 		RFIDfactory factory = RFIDfactory.getInstance();
 		List<String> list = factory.readAllRFID("COM4");
 
-		if (list == null) {
+		if (list == null || list.size() == 0) {
 			bizResp.addError("感应失败,请检查机器.");
 			return bizResp;
 		}
 
 		List<ProductStock> stockList = new ArrayList<ProductStock>();
-
+		
 		for (int i = 0; i < list.size(); i++) {
 			String rfid = list.get(i);
 			ProductStock stock = getProductStockByCriteria(rfid);
@@ -58,16 +58,15 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 			return bizResp;
 		}
 
-		List<OrderItem> orderItemList = convertToOrderItem(stockList);
-
-		bizResp.setData(orderItemList);
+		convertToOrderItem(stockList,bizResp);
 		return bizResp;
 	}
 
-	private List<OrderItem> convertToOrderItem(List<ProductStock> stockList) {
+	private List<OrderItem> convertToOrderItem(List<ProductStock> stockList,BizResponse<List<OrderItem>> bizResp) {
 		List<OrderItem> list = new ArrayList<OrderItem>();
 		Map<String, OrderItem> map = new HashMap<String, OrderItem>();
 
+		Double totalFee = 0.0;
 		for (ProductStock stock : stockList) {
 			String sku = stock.getSku();
 			OrderItem item = map.get(sku);
@@ -88,9 +87,13 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 				item.setRfids(item.getRfids() + "&" + rfid);
 				item.setItemFee(item.getItemFee() + price);
 			}
+			totalFee += price;
 		}
 
 		list.addAll(map.values());
+		
+		bizResp.setTotalFee(totalFee);
+		bizResp.setData(list);
 
 		return list;
 	}

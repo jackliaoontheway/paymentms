@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\sts-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7910222292333714232.tmp"/>
+    <property name="classworlds.conf" value="C:\sts-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8624429373602924823.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
     <property name="java.library.path" value="C:\Tools\Java\jdk1.8.0_152\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Tools/Java/jre1.8.0_152/bin/server;C:/Tools/Java/jre1.8.0_152/bin;C:/Tools/Java/jre1.8.0_152/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Tools\Git\cmd;C:\Tools\nodejs\;C:\Users\ldhOn\AppData\Local\Microsoft\WindowsApps;C:\Users\ldhOn\AppData\Roaming\npm;C:\Tools\Microsoft VS Code\bin;C:\Users\ldhOn\Downloads\sts-bundle\sts-3.9.1.RELEASE;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>

@@ -14,8 +14,8 @@ import com.noone.paymentms.common.basemodel.ServerResponse;
 import com.noone.paymentms.domain.OrderItem;
 
 @RestController
-@RequestMapping("/paymentms/productstock")
-public class ProductController extends BaseController {
+@RequestMapping("/paymentms")
+public class PaymentController extends BaseController {
 
 	@Autowired
 	BizProductStockService bizProductStockService;
@@ -26,7 +26,11 @@ public class ProductController extends BaseController {
 		ServerResponse<List<OrderItem>> serverResponse = new ServerResponse<List<OrderItem>>();
 
 		BizResponse<List<OrderItem>> bizResp = bizProductStockService.retriveProductStockByReadRfid();
-		serverResponse.setData(bizResp.getData());
+		if(bizResp != null && bizResp.getData() != null && bizResp.getData().size() > 0) {
+			serverResponse.setData(bizResp.getData());
+			serverResponse.setHasData("1");
+			serverResponse.setTotalFee(bizResp.getTotalFee());
+		}
 
 		return serverResponse;
 	}
