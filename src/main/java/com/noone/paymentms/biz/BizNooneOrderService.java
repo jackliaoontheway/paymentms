@@ -9,5 +9,9 @@ import com.noone.paymentms.domain.OrderItem;
 public interface BizNooneOrderService {
 	
 	BizResponse<NooneOrder> createOrder(List<OrderItem> items, Double totalFee);
+
+	BizResponse<NooneOrder> pay(Long id, String payCode);
+
+	BizResponse<NooneOrder> queryOrderStatus(Long id,String orderNum);
 	
 }

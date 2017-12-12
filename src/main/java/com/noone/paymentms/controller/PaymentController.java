@@ -51,5 +51,24 @@ public class PaymentController extends BaseController {
 		serverResponse.setData(bizResp.getData());
 		return serverResponse;
 	}
+	
+	@PostMapping("/pay")
+	public @ResponseBody ServerResponse<NooneOrder> pay(@RequestBody NooneOrder order) {
+
+		BizResponse<NooneOrder> bizResp = bizNooneOrderService.pay(order.getId(),order.getPayCode());
+		ServerResponse<NooneOrder> serverResponse = new ServerResponse<>();
+		serverResponse.setData(bizResp.getData());
+		return serverResponse;
+	}
+	
+	@PostMapping("/queryorderstatus")
+	public @ResponseBody ServerResponse<NooneOrder> queryOrderStatus(@RequestBody NooneOrder order) {
+
+		BizResponse<NooneOrder> bizResp = bizNooneOrderService.queryOrderStatus(order.getId(),order.getOrderNum());
+		ServerResponse<NooneOrder> serverResponse = new ServerResponse<>();
+		serverResponse.setData(bizResp.getData());
+		return serverResponse;
+	}
+
 
 }
