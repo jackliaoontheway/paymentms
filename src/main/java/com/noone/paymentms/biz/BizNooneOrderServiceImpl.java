@@ -25,8 +25,8 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 
 	@Override
 	@Transactional
-	public BizResponse<String> createOrder(List<OrderItem> items, Double totalFee) {
-		BizResponse<String> bizResp = new BizResponse<String>();
+	public BizResponse<NooneOrder> createOrder(List<OrderItem> items, Double totalFee) {
+		BizResponse<NooneOrder> bizResp = new BizResponse<NooneOrder>();
 		NooneOrder order = new NooneOrder();
 		order.setStatus("PENDING");
 		order.setOrderNum("NO." + new Date().getTime());
@@ -37,7 +37,7 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 			item.setOrderId(savedOrder.getId());
 			orderItemRepository.save(item);
 		}
-		bizResp.setData(savedOrder.getOrderNum());
+		bizResp.setData(order);
 		return bizResp;
 	}
 

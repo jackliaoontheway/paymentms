@@ -15,6 +15,7 @@ import com.noone.paymentms.biz.BizProductStockService;
 import com.noone.paymentms.common.basemodel.BizResponse;
 import com.noone.paymentms.common.basemodel.ServerResponse;
 import com.noone.paymentms.controller.model.ViewNooneOrder;
+import com.noone.paymentms.domain.NooneOrder;
 import com.noone.paymentms.domain.OrderItem;
 
 @RestController
@@ -43,10 +44,10 @@ public class PaymentController extends BaseController {
 	}
 
 	@PostMapping("/createorder")
-	public @ResponseBody ServerResponse<String> createOrder(@RequestBody ViewNooneOrder order) {
+	public @ResponseBody ServerResponse<NooneOrder> createOrder(@RequestBody ViewNooneOrder order) {
 
-		BizResponse<String> bizResp = bizNooneOrderService.createOrder(order.getOrderItemList(), order.getTotalFee());
-		ServerResponse<String> serverResponse = new ServerResponse<>();
+		BizResponse<NooneOrder> bizResp = bizNooneOrderService.createOrder(order.getOrderItemList(), order.getTotalFee());
+		ServerResponse<NooneOrder> serverResponse = new ServerResponse<>();
 		serverResponse.setData(bizResp.getData());
 		return serverResponse;
 	}

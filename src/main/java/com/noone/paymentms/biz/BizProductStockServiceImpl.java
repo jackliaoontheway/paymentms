@@ -37,11 +37,11 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 		}
 
 		List<ProductStock> stockList = new ArrayList<ProductStock>();
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			String rfid = list.get(i);
 			ProductStock stock = getProductStockByCriteria(rfid);
-			if (getProductStockByCriteria(rfid) != null) {
+			if (stock != null) {
 				stockList.add(stock);
 			} else {
 
@@ -58,16 +58,20 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 			return bizResp;
 		}
 
-		convertToOrderItem(stockList,bizResp);
+		convertToOrderItem(stockList, bizResp);
 		return bizResp;
 	}
 
-	private List<OrderItem> convertToOrderItem(List<ProductStock> stockList,BizResponse<List<OrderItem>> bizResp) {
+	private List<OrderItem> convertToOrderItem(List<ProductStock> stockList, BizResponse<List<OrderItem>> bizResp) {
 		List<OrderItem> list = new ArrayList<OrderItem>();
 		Map<String, OrderItem> map = new HashMap<String, OrderItem>();
 
 		Double totalFee = 0.0;
 		for (ProductStock stock : stockList) {
+			// 已经支付的 不要显示
+			if ("PAID".equals(stock.getStatus())) {
+				continue;
+			}
 			String sku = stock.getSku();
 			OrderItem item = map.get(sku);
 
@@ -91,7 +95,7 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 		}
 
 		list.addAll(map.values());
-		
+
 		bizResp.setTotalFee(totalFee);
 		bizResp.setData(list);
 
