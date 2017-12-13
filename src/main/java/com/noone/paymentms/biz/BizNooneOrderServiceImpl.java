@@ -61,9 +61,8 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 		NooneOrder dbOrder = nooneOrderRepository.findOne(id);
 
 		if (dbOrder != null) {
-
-			// PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
-			// (dbOrder.getTotalFee() * 1000) + "");
+//			 PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
+//			 (dbOrder.getTotalFee() * 1000) + "");
 			PayResultStatus payResultStatus = PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
 					(dbOrder.getTotalFee()) + "");
 
@@ -73,10 +72,12 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 				if (payResultStatus.equals(PayResultStatus.SUCCESS)) {
 					updateProductStock(id);
 				}
-				bizResp.setData(dbOrder);
+			} else {
+				dbOrder.setStatus(PayResultStatus.EXCEPTION.name());
 			}
 		}
-
+		
+		bizResp.setData(dbOrder);
 		return bizResp;
 	}
 
@@ -118,9 +119,40 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 			if (payResultStatus.equals(PayResultStatus.SUCCESS)) {
 				updateProductStock(id);
 			}
+		} else {
+			dbOrder.setStatus(PayResultStatus.EXCEPTION.name());
 		}
+		
 		bizResp.setData(dbOrder);
 		return bizResp;
 	}
+
+//	@Override
+//	public BizResponse<NooneOrder> completeOrder(Long id) {
+//
+//		BizResponse<NooneOrder> bizResp = new BizResponse<NooneOrder>();
+//
+//		NooneOrder dbOrder = nooneOrderRepository.findOne(id);
+//
+//		if (dbOrder != null) {
+////			 PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
+////			 (dbOrder.getTotalFee() * 1000) + "");
+//			PayResultStatus payResultStatus = PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
+//					(dbOrder.getTotalFee()) + "");
+//
+//			if (payResultStatus != null) {
+//				dbOrder.setStatus(payResultStatus.name());
+//				nooneOrderRepository.save(dbOrder);
+//				if (payResultStatus.equals(PayResultStatus.SUCCESS)) {
+//					updateProductStock(id);
+//				}
+//			} else {
+//				dbOrder.setStatus(PayResultStatus.EXCEPTION.name());
+//			}
+//		}
+//		
+//		bizResp.setData(dbOrder);
+//		return bizResp;
+//	}
 
 }

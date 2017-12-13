@@ -60,7 +60,7 @@ public class PayUtil {
 				if (resultMap.containsKey("sign") && !SignUtils.checkParam(resultMap, SwiftpassConfig.key)) {
 					System.out.print("签名失败");
 				} else {
-					result = PayResultStatus.valueOf(tradeStaus);
+					result = PayResultStatus.getByCode(tradeStaus);
 				}
 			} 
 		} catch (Exception e) {

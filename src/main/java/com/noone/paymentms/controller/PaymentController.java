@@ -69,6 +69,15 @@ public class PaymentController extends BaseController {
 		serverResponse.setData(bizResp.getData());
 		return serverResponse;
 	}
+//	
+//	@PostMapping("/completeorder")
+//	public @ResponseBody ServerResponse<NooneOrder> completeOrder(@RequestBody NooneOrder order) {
+//
+//		BizResponse<NooneOrder> bizResp = bizNooneOrderService.completeOrder(order.getId());
+//		ServerResponse<NooneOrder> serverResponse = new ServerResponse<>();
+//		serverResponse.setData(bizResp.getData());
+//		return serverResponse;
+//	}
 
 
 }
