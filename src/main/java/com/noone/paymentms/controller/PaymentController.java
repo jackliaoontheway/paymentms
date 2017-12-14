@@ -64,7 +64,7 @@ public class PaymentController extends BaseController {
 	@PostMapping("/queryorderstatus")
 	public @ResponseBody ServerResponse<NooneOrder> queryOrderStatus(@RequestBody NooneOrder order) {
 
-		BizResponse<NooneOrder> bizResp = bizNooneOrderService.queryOrderStatus(order.getId(),order.getOrderNum());
+		BizResponse<NooneOrder> bizResp = bizNooneOrderService.queryOrderStatus(order.getId());
 		ServerResponse<NooneOrder> serverResponse = new ServerResponse<>();
 		serverResponse.setData(bizResp.getData());
 		return serverResponse;

@@ -12,6 +12,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.util.StringUtils;
 
 
 public class PayUtil {
@@ -29,17 +30,17 @@ public class PayUtil {
 
 	public PayResultStatus pay(String authCode, String orderNum, String totalFee) {
 		Map<String, String> map = buildRequestPayMap(authCode, orderNum, totalFee);
-		PayResultStatus result = call(map);
+		PayResultStatus result = call(map,false);
 		return result;
 	}
 
 	public PayResultStatus queryPayStatus(String orderNum) {
 		Map<String, String> map = buildRequestQueryPayMap(orderNum);
-		PayResultStatus result = call(map);
+		PayResultStatus result = call(map,true);
 		return result;
 	}
 
-	private PayResultStatus call(Map<String, String> requestMap) {
+	private PayResultStatus call(Map<String, String> requestMap,boolean isQuery) {
 		PayResultStatus result = null;
 		CloseableHttpResponse response = null;
 		CloseableHttpClient client = null;
@@ -55,12 +56,27 @@ public class PayUtil {
 				System.out.println("支付请求返回参数：" + resultMap);
 				System.out.println(resultMap.containsKey("sign"));
 
-				String tradeStaus = resultMap.get("trade_state");
-
 				if (resultMap.containsKey("sign") && !SignUtils.checkParam(resultMap, SwiftpassConfig.key)) {
 					System.out.print("签名失败");
 				} else {
-					result = PayResultStatus.getByCode(tradeStaus);
+					if("0".equals(resultMap.get("status")) && "0".equals(resultMap.get("result_code"))) {
+						if(!isQuery) {
+							result = PayResultStatus.SUCCESS;
+						} else {
+							String tradeStaus = resultMap.get("trade_state");
+							result = PayResultStatus.getByCode(tradeStaus);
+						}
+					} else {
+						if("Y".equals(resultMap.get("need_query"))) {
+							result = PayResultStatus.USERPAYING;
+						}
+						if(StringUtils.isEmpty(resultMap.get("need_query"))) {
+							result = PayResultStatus.USERPAYING;
+						}
+						if("N".equals(resultMap.get("need_query"))) {
+							result = PayResultStatus.PAYERROR;
+						}
+					}
 				}
 			} 
 		} catch (Exception e) {

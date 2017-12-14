@@ -42,6 +42,7 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 		order.setStatus("PENDING");
 		order.setOrderNum("NO." + new Date().getTime());
 		order.setTotalFee(totalFee);
+		order.setBaseField(-99999L);
 		NooneOrder savedOrder = nooneOrderRepository.save(order);
 
 		for (OrderItem item : items) {
@@ -60,11 +61,10 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 
 		NooneOrder dbOrder = nooneOrderRepository.findOne(id);
 
-		if (dbOrder != null) {
-//			 PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
-//			 (dbOrder.getTotalFee() * 1000) + "");
+		if (dbOrder != null && dbOrder.getTotalFee() != null) {
+			Double totalFee = dbOrder.getTotalFee()*1000;
 			PayResultStatus payResultStatus = PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
-					(dbOrder.getTotalFee()) + "");
+					 (totalFee.intValue()) + "");
 
 			if (payResultStatus != null) {
 				dbOrder.setStatus(payResultStatus.name());
@@ -75,6 +75,8 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 			} else {
 				dbOrder.setStatus(PayResultStatus.EXCEPTION.name());
 			}
+		} else {
+			dbOrder.setStatus(PayResultStatus.EXCEPTION.name());
 		}
 		
 		bizResp.setData(dbOrder);
@@ -105,13 +107,14 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 	}
 
 	@Override
-	public BizResponse<NooneOrder> queryOrderStatus(Long id, String orderNum) {
+	public BizResponse<NooneOrder> queryOrderStatus(Long id) {
 
 		BizResponse<NooneOrder> bizResp = new BizResponse<NooneOrder>();
 
-		PayResultStatus payResultStatus = PayUtil.getInstance().queryPayStatus(orderNum);
 
 		NooneOrder dbOrder = nooneOrderRepository.findOne(id);
+		
+		PayResultStatus payResultStatus = PayUtil.getInstance().queryPayStatus(dbOrder.getOrderNum());
 
 		if (payResultStatus != null) {
 			dbOrder.setStatus(payResultStatus.name());

@@ -12,7 +12,7 @@ public interface BizNooneOrderService {
 
 	BizResponse<NooneOrder> pay(Long id, String payCode);
 
-	BizResponse<NooneOrder> queryOrderStatus(Long id,String orderNum);
+	BizResponse<NooneOrder> queryOrderStatus(Long id);
 
 //	BizResponse<NooneOrder> completeOrder(Long id);
 	
