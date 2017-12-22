@@ -62,7 +62,7 @@ public class BizNooneOrderServiceImpl implements BizNooneOrderService {
 		NooneOrder dbOrder = nooneOrderRepository.findOne(id);
 
 		if (dbOrder != null && dbOrder.getTotalFee() != null) {
-			Double totalFee = dbOrder.getTotalFee()*1000;
+			Double totalFee = dbOrder.getTotalFee()*100;
 			PayResultStatus payResultStatus = PayUtil.getInstance().pay(payCode, dbOrder.getOrderNum(),
 					 (totalFee.intValue()) + "");
 

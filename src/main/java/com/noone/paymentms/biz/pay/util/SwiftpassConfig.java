@@ -6,7 +6,8 @@ public class SwiftpassConfig {
      * 威富通交易密钥
      */
 //    public static String key = "9d101c97133837e13dde2d32a5054abb"; // test
-    public static String key = "40c5ac707c48a83f8f5355afe47571";
+    public static String key = "40c5ac707c48a83f8f5355af26e47571";
+//    public static String key = "9d101c97133837e13dde";
     
     /**
      * 威富通商户号

@@ -1,5 +1,6 @@
 package com.noone.paymentms.biz;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 		List<String> list = factory.readAllRFID("COM4");
 
 		System.out.println("rfid :" + list);
-		
+
 		if (list == null || list.size() == 0) {
 			bizResp.addError("感应失败,请检查机器.");
 			return bizResp;
@@ -93,12 +94,16 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 				item.setRfids(item.getRfids() + "&" + rfid);
 				item.setItemFee(item.getItemFee() + price);
 			}
+			
+			double convertedItemFee = new BigDecimal(item.getItemFee()).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+			item.setItemFee(convertedItemFee);
+			
 			totalFee += price;
 		}
 
 		list.addAll(map.values());
-
-		bizResp.setTotalFee(totalFee);
+		double convertedTotalFee = new BigDecimal(totalFee).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+		bizResp.setTotalFee(convertedTotalFee);
 		bizResp.setData(list);
 
 		return list;
