@@ -30,7 +30,7 @@ public class BizProductStockServiceImpl implements BizProductStockService {
 		BizResponse<List<OrderItem>> bizResp = new BizResponse<List<OrderItem>>();
 
 		RFIDfactory factory = RFIDfactory.getInstance();
-		List<String> list = factory.readAllRFID("COM4");
+		List<String> list = factory.readAllRFID("COM3");
 
 		System.out.println("rfid :" + list);
 
